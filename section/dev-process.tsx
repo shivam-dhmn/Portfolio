@@ -1,6 +1,7 @@
-import React from "react";
+"use client";
+import { motion } from "framer-motion";
+
 import {
-    ArrowRight,
   ClipboardList,
   CodeXml,
   FlaskConical,
@@ -13,7 +14,7 @@ const values = [
     id: 1,
     icon: <ClipboardList />,
     title: "Discover",
-    description: "Understanding project requirements and Goals.",
+    description: "Understanding project requirements and goals.",
   },
   {
     id: 2,
@@ -41,26 +42,82 @@ const values = [
   },
 ];
 
+// Animaions
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 40,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+};
+
 const DevProcess = () => {
   return (
-    <>
-      <div className="dev-process-container bg-gray-900 p-5 ">
-        <h1 className="text-3xl font-bold text-white text-center p-6">Development Process</h1>
-        <div className="dev-process flex flex-wrap justify-center gap-4 p-10  bg-gray-900 border-y-1 border-gray-700">
-          {values.map((step, index) => (
-            <div key={index} className="step flex flex-col items-center gap-2  p-4 rounded-lg bg-gray-800 hover:bg-gray-700 transition duration-300">
-              <div className="icon text-2xl text-white">{step.icon}</div>
-              <h3 className="title text-lg font-semibold text-white ">
-                {step.title}
-              </h3>
-              <p className="description text-center text-gray-400">
-                {step.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </>
+    <section className="bg-gray-900 px-4 py-10 sm:px-6">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.4 }}
+        transition={{ duration: 0.6 }}
+      >
+        <h2 className="px-2 pb-8 text-center text-2xl font-bold text-white sm:text-3xl">
+          Development Process
+        </h2>
+      </motion.div>
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        
+        className="mx-auto grid max-w-7xl gap-4 border-y border-gray-700 py-8 sm:grid-cols-2 lg:grid-cols-5 "
+      >
+        {values.map((step) => (
+          <motion.div
+            whileHover={{
+              y: -8,
+              scale: 1.02,
+              transition: { duration: 0.3, ease: "easeOut" },
+            }}
+            key={step.id}
+            className="flex min-h-[170px] flex-col items-center justify-center gap-3 rounded-lg bg-gray-800 p-5 transition duration-300 hover:bg-gray-700 hover:shadow-[0_0_30px_rgba(37,99,235,.15)] cursor-pointer"
+          >
+            <motion.div
+              whileHover={{
+                y: -8,
+                scale: 1.02,
+              }}
+              className="text-2xl text-white "
+            >
+              {step.icon}
+            </motion.div>
+            <h3 className="text-center text-lg font-semibold text-white">
+              {step.title}
+            </h3>
+            <p className="text-center text-sm leading-6 text-gray-400">
+              {step.description}
+            </p>
+          </motion.div>
+        ))}
+      </motion.div>
+    </section>
   );
 };
 

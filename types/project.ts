@@ -1,4 +1,4 @@
-import { IconType } from "react-icons";
+import type { ComponentType, SVGProps } from "react";
 
 export interface Project {
   id: number;
@@ -9,7 +9,7 @@ export interface Project {
   features: string[];
   technologies: {
     name: string;
-    icon: IconType;
+    icon: ComponentType<SVGProps<SVGSVGElement>>;
     color: string;
   }[];
   github: string;

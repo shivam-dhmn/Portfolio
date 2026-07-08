@@ -1,11 +1,7 @@
-import {
-  BarChart3,
-  Check,
-  CircleDollarSign,
-  ExternalLink,
-  GitBranch,
-  Search,
-} from "lucide-react";
+"use client";
+import { motion } from "framer-motion";
+
+import { BarChart3, Check, CircleDollarSign, Search } from "lucide-react";
 
 const projects = [
   {
@@ -45,6 +41,27 @@ const projects = [
     preview: "tuition",
   },
 ] as const;
+
+// Animation
+const listVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: {
+    opacity: 0,
+    x: -15,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+  },
+};
 
 function ExpensePreview() {
   return (
@@ -179,7 +196,23 @@ function TuitionPreview() {
 
 function ProjectInfo({ project }: { project: (typeof projects)[number] }) {
   return (
-    <div className="flex flex-col items-start justify-center px-7 py-6 max-[800px]:p-6">
+    <motion.div
+      initial={{
+        opacity: 0,
+        x: 30,
+      }}
+      whileInView={{
+        opacity: 1,
+        x: 0,
+      }}
+      viewport={{
+        once: true,
+      }}
+      transition={{
+        delay: 0.2,
+      }}
+      className="flex flex-col items-start justify-center px-7 py-6 max-[800px]:p-6"
+    >
       <span
         className={`mb-2 rounded px-1.5 py-[3px] text-[8px] ${project.accent === "violet" ? "bg-violet-950 text-violet-300" : "bg-blue-950 text-blue-400"}`}
       >
@@ -191,18 +224,28 @@ function ProjectInfo({ project }: { project: (typeof projects)[number] }) {
       <p className="mt-2 max-w-[490px] text-xs leading-relaxed text-slate-400">
         {project.description}
       </p>
-      <ul className="mt-3 grid gap-[5px] text-[11px] text-slate-300">
+      <motion.ul
+        variants={listVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="mt-3 grid gap-[5px] text-[11px] text-slate-300"
+      >
         {project.features.map((feature) => (
-          <li className="flex items-center gap-[7px]" key={feature}>
+          <motion.li
+            variants={itemVariants}
+            className="flex items-center gap-[7px]"
+            key={feature}
+          >
             <span
               className={`grid size-3.5 place-items-center rounded-full text-white ${project.accent === "violet" ? "bg-violet-600" : "bg-blue-600"}`}
             >
               <Check size={11} />
             </span>
             {feature}
-          </li>
+          </motion.li>
         ))}
-      </ul>
+      </motion.ul>
       <div className="mt-3 flex flex-wrap gap-1.5">
         {project.technologies.map((tech) => (
           <span
@@ -213,11 +256,8 @@ function ProjectInfo({ project }: { project: (typeof projects)[number] }) {
           </span>
         ))}
       </div>
-      <div className="mt-3.5 flex gap-2 max-[480px]:w-full">
-        
-       
-      </div>
-    </div>
+      <div className="mt-3.5 flex gap-2 max-[480px]:w-full"></div>
+    </motion.div>
   );
 }
 
@@ -227,7 +267,13 @@ export default function FeaturedProjects() {
       className="relative overflow-hidden bg-[#030810] px-6 py-[72px] text-slate-50 before:pointer-events-none before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_50%_20%,rgba(37,99,235,.08),transparent_35%)] max-[800px]:px-4 max-[800px]:py-14"
       id="projects"
     >
-      <div className="relative mx-auto mb-[30px] w-full max-w-[1080px] text-center">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="relative mx-auto mb-[30px] w-full max-w-[1080px] text-center"
+      >
         <div className="flex items-center justify-center gap-3">
           <span className="h-px w-[52px] bg-gradient-to-r from-transparent to-violet-600" />
           <h2 className="text-xs font-bold tracking-[.18em] text-violet-300">
@@ -239,10 +285,29 @@ export default function FeaturedProjects() {
           Here are some of the projects I&apos;ve worked on. Each project taught
           me something new and helped me grow.
         </p>
-      </div>
+      </motion.div>
       <div className="relative mx-auto grid w-full max-w-[1080px] gap-[18px]">
         {projects.map((project, index) => (
-          <article
+          <motion.article
+            initial={{
+              opacity: 0,
+              y: 50,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+              amount: 0.3,
+            }}
+            transition={{
+              duration: 0.7,
+              delay: index * 0.15,
+            }}
+            whileHover={{
+              y: -6,
+            }}
             className={`relative grid min-h-[300px] overflow-hidden rounded-xl border border-[#172130] bg-[linear-gradient(130deg,rgba(10,17,27,.92),rgba(3,8,16,.96))] shadow-2xl ${index % 2 ? "grid-cols-[1.05fr_1.25fr] max-[800px]:grid-cols-1" : "grid-cols-[1fr_1.18fr] max-[800px]:grid-cols-1"}`}
             key={project.title}
           >
@@ -256,7 +321,7 @@ export default function FeaturedProjects() {
               )}
             </div>
             <ProjectInfo project={project} />
-          </article>
+          </motion.article>
         ))}
       </div>
     </section>

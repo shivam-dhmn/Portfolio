@@ -1,21 +1,32 @@
 "use client";
-
+import { motion } from "framer-motion";
 import { ArrowRight, Send } from "lucide-react";
 
 export default function CTA() {
   return (
-    <section className="bg-gray-900 pb-3">
-      <div className="mx-auto max-w-7xl bg-gray-900">
+    <section id="contact" className="bg-gray-900 px-4 pb-6 sm:px-6">
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: 40,
+        }}
+        whileInView={{
+          opacity: 1,
+          y: 0,
+        }}
+        className="mx-auto max-w-7xl bg-gray-900"
+      >
         <div
           className="
             group
             relative
             overflow-hidden
-            rounded-3xl
+            rounded-2xl
             border
             border-zinc-800
             bg-[#0C1220]
-            p-8
+            p-5
+            sm:p-8
             transition-all
             duration-500
             hover:border-blue-500/40
@@ -25,19 +36,25 @@ export default function CTA() {
 
           <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 via-transparent to-blue-600/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-          <div className="relative flex flex-col items-center justify-between gap-8 lg:flex-row">
+          <div className="relative flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
             {/* Left Side */}
 
-            <div className="flex items-center gap-6">
+            <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-6">
               <div className="relative">
                 <div className="absolute inset-0 rounded-full bg-blue-500 blur-2xl opacity-30" />
 
-                <div
+                <motion.div
+                  whileHover={{
+                    rotate: -8,
+                    scale: 1.1,
+                  }}
                   className="
                     relative
                     flex
-                    h-20
-                    w-20
+                    h-16
+                    w-16
+                    sm:h-20
+                    sm:w-20
                     items-center
                     justify-center
                     rounded-full
@@ -45,28 +62,39 @@ export default function CTA() {
                     shadow-lg
                   "
                 >
-                  <Send className="h-8 w-8 text-white" />
-                </div>
+                  <Send className="h-7 w-7 text-white sm:h-8 sm:w-8" />
+                </motion.div>
               </div>
 
               <div>
-                <h2 className="text-3xl font-bold text-white">
-                  Let's Build Something Great Together
+                <h2 className="text-2xl font-bold text-white sm:text-3xl">
+                  Let&apos;s Build Something Great Together
                 </h2>
 
-                <p className="mt-3 max-w-2xl text-zinc-400 leading-7">
-                  Have a project in mind or want to work together? Let's create
-                  something amazing with modern web technologies.
+                <p className="mt-3 max-w-2xl leading-7 text-zinc-400">
+                  Have a project in mind or want to work together? Let&apos;s
+                  create something amazing with modern web technologies.
                 </p>
               </div>
             </div>
 
             {/* Button */}
 
-            <button
+            <motion.a
+              whileHover={{
+                scale: 1.04,
+              }}
+              whileTap={{
+                scale: 0.98,
+              }}
+              href="https://wa.me/919896508141?text=Hi%20Shivam,%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project."
+              target="_blank"
+              rel="noopener noreferrer"
               className="
                 flex
+                w-full
                 items-center
+                justify-center
                 gap-3
                 rounded-xl
                 bg-blue-600
@@ -79,6 +107,7 @@ export default function CTA() {
                 hover:scale-105
                 hover:bg-blue-700
                 hover:shadow-[0_0_30px_rgba(37,99,235,0.45)]
+                sm:w-auto
               "
             >
               Get In Touch
@@ -86,10 +115,10 @@ export default function CTA() {
                 size={18}
                 className="transition-transform duration-300 group-hover:translate-x-1"
               />
-            </button>
+            </motion.a>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

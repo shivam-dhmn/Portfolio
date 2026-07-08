@@ -1,34 +1,8 @@
-// import React from 'react'
-
-// const footer = () => {
-//   return (
-//     <>
-//       <div className="logo bg-gray-900 p-6 flex text-white ">
-//         <div>
-//         <h1 className="text-2xl font-bold text-white">Shivam<span className="text-blue-500">.</span></h1>
-//         <p className="text-slate-500 text-[14px] max-w-3xs">Building Fast, modern and Scalable web applications.</p>
-//       </div>
-//       <div className="Navigation_links max-h-1 flex flex-col gap-2 ml-10 ">
-//         <h1 className="text-lg font-semibold text-white">Navigation</h1>
-//         <ul className="flex flex-col  text-slate-500 text-[14px]">
-//           <li><a href="#home">Home</a></li>
-//           <li><a href="#projects">Projects</a></li>
-//           <li><a href="#about">About</a></li>
-//           <li><a href="#skills">Skills</a></li>
-//           <li><a href="#contact">Contact</a></li>
-//         </ul>
-//       </div>
-//       </div>
-//     </>
-//   )
-// }
-
-// export default footer
-
-"use client";
+﻿"use client";
 
 import Link from "next/link";
-import { ArrowUp, Heart, Mail } from "lucide-react";
+import { ArrowUp, ExternalLink, FolderGit2, Mail } from "lucide-react";
+import { WhatsappIcon } from "@/components/icons/la-whatsapp";
 
 export default function Footer() {
   const navigation = [
@@ -39,144 +13,133 @@ export default function Footer() {
     { title: "Contact", href: "#contact" },
   ];
 
-  const resources = [
-    { title: "Resume", href: "/resume.pdf" },
-    { title: "GitHub", href: "https://github.com/" },
-    { title: "LinkedIn", href: "https://linkedin.com/" },
-  ];
-
-  const socials = [
+  const contactLinks = [
     {
       icon: Mail,
-      title: "shivam@example.com",
+      label: "shivam@example.com",
       href: "mailto:shivam@example.com",
     },
     {
-      icon: Mail,
-      title: "LinkedIn",
-      href: "https://linkedin.com/",
+      icon: WhatsappIcon,
+      label: "WhatsApp",
+      href: "https://wa.me/919896508141?text=Hi%20Shivam,%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project.",
+      newTab: true,
     },
     {
-      icon: Mail,
-      title: "GitHub",
-      href: "https://github.com/",
+      icon: FolderGit2,
+      label: "GitHub",
+      href: "https://github.com/shivam-dhmn",
+      newTab: true,
     },
   ];
 
   return (
-    <footer className="border-t border-zinc-800 bg-[#080B14]">
-      <div className="mx-auto max-w-7xl px-6 py-14">
-        <div className="grid gap-12 md:grid-cols-5">
-          {/* Logo */}
-          <div className="space-y-5">
-            <div className="flex items-center gap-3">
-              {/* Replace with your logo */}
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-violet-600 font-bold text-white">
+    <footer className="border-t border-zinc-800 bg-[#080B14] text-zinc-400">
+      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
+        <div className="grid gap-10 lg:grid-cols-[1.2fr_.8fr_1fr] lg:gap-12">
+          <div className="max-w-md">
+            <Link href="#home" className="inline-flex items-center gap-3">
+              <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-blue-600 text-lg font-bold text-white shadow-lg shadow-blue-950/30">
                 S
-              </div>
-
-              <h2 className="text-3xl font-bold text-white">
+              </span>
+              <span className="text-2xl font-bold text-white">
                 Shivam<span className="text-blue-500">.</span>
-              </h2>
-            </div>
+              </span>
+            </Link>
 
-            <p className="max-w-xs text-sm leading-7 text-zinc-400">
-              Building fast, modern and scalable web applications.
+            <p className="mt-5 text-sm leading-7">
+              Frontend developer building fast, modern and scalable web
+              applications with clean interfaces and reliable user experiences.
             </p>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              {contactLinks.map((item) => {
+                const Icon = item.icon;
+
+                return (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    aria-label={item.label}
+                    rel={item.newTab ? "noopener noreferrer" : undefined}
+                    target={item.newTab ? "_blank" : undefined}
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900/70 text-zinc-300 transition hover:border-blue-500 hover:bg-blue-500 hover:text-white"
+                  >
+                    <Icon size={18} />
+                  </Link>
+                );
+              })}
+            </div>
           </div>
 
-          {/* Navigation */}
-
-          <div className="space-y-5 border-l border-zinc-800 pl-8">
-            <h3 className="font-semibold text-white">Navigation</h3>
-
-            <ul className="space-y-3">
+          <nav aria-label="Footer navigation">
+            <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-white">
+              Explore
+            </h2>
+            <ul className="mt-5 grid grid-cols-2 gap-3 sm:max-w-sm lg:grid-cols-1">
               {navigation.map((item) => (
                 <li key={item.title}>
                   <Link
                     href={item.href}
-                    className="text-sm text-zinc-400 transition hover:text-blue-400"
+                    className="inline-flex min-h-9 items-center text-sm transition hover:text-blue-400"
                   >
                     {item.title}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          {/* Resources */}
-
-          <div className="space-y-5 border-l border-zinc-800 pl-8">
-            <h3 className="font-semibold text-white">Resources</h3>
-
-            <ul className="space-y-3">
-              {resources.map((item) => (
-                <li key={item.title}>
-                  <Link
-                    href={item.href}
-                    className="text-sm text-zinc-400 transition hover:text-blue-400"
-                  >
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Connect */}
-
-          <div className="space-y-5 border-l border-zinc-800 pl-8">
-            <h3 className="font-semibold text-white">Let's Connect</h3>
-
-            <ul className="space-y-4">
-              {socials.map((item) => {
-                const Icon = item.icon;
-
-                return (
-                  <li key={item.title}>
-                    <Link
-                      href={item.href}
-                      className="flex items-center gap-3 text-sm text-zinc-400 transition hover:text-blue-400"
-                    >
-                      <Icon size={16} />
-
-                      {item.title}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-
-          {/* Copyright */}
-
-          <div className="flex flex-col justify-between border-l border-zinc-800 pl-8">
-            <div>
-              <p className="flex items-center gap-2 text-sm text-zinc-400">
-                Made with
-                <Heart size={15} className="fill-red-500 text-red-500" />
-                by Shivam
-              </p>
-
-              <p className="mt-3 text-sm text-zinc-500">
-                © 2026 All rights reserved.
-              </p>
+          <div>
+            <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-white">
+              Start a Project
+            </h2>
+            <p className="mt-5 text-sm leading-7">
+              Have an idea ready? Send a message and I&apos;ll get back to you
+              with the next steps.
+            </p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row lg:flex-col">
+              <Link
+                href="https://wa.me/919896508141?text=Hi%20Shivam,%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
+              >
+                WhatsApp Me
+                <ExternalLink size={16} />
+              </Link>
+              <Link
+                href="mailto:shivam@example.com"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-zinc-800 px-5 py-3 text-sm font-semibold text-white transition hover:border-blue-500 hover:text-blue-400"
+              >
+                Send Email
+                <Mail size={16} />
+              </Link>
             </div>
-
-            <button
-              onClick={() =>
-                window.scrollTo({
-                  top: 0,
-                  behavior: "smooth",
-                })
-              }
-              className="mt-8 flex h-12 w-12 items-center justify-center rounded-xl border border-zinc-700 bg-zinc-900 transition hover:border-blue-500 hover:bg-blue-500"
-            >
-              <ArrowUp size={18} color="white" />
-            </button>
           </div>
+        </div>
+
+        <div className="mt-10 flex flex-col gap-5 border-t border-zinc-800 pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm text-zinc-500">
+            © 2026 Shivam. All rights reserved.
+          </p>
+
+          <button
+            type="button"
+            aria-label="Scroll back to top"
+            onClick={() =>
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+              })
+            }
+            className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900 text-white transition hover:border-blue-500 hover:bg-blue-600"
+          >
+            <ArrowUp size={18} />
+          </button>
         </div>
       </div>
     </footer>
   );
 }
+
