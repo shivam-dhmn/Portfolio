@@ -2,6 +2,8 @@
 
 import { Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
+import logo from "../public/images/fulllogo.png";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -15,22 +17,36 @@ export default function Header() {
   return (
     <header className="premium-header sticky top-0 z-[100] border-b border-gray-700 bg-gray-900/90 text-gray-300 backdrop-blur-xl">
       <motion.nav
-       initial={{
-    opacity: 0,
-    y: -30,
-  }}
-  animate={{
-    opacity: 1,
-    y: 0,
-  }}
-  transition={{
-    duration: 0.6,
-    ease: "easeOut",
-  }}
-      className="mx-auto hidden max-w-7xl items-center justify-between px-4 py-4 sm:px-6 md:flex lg:px-8">
-        <a href="#home" className="text-xl font-bold text-white">
+        initial={{
+          opacity: 0,
+          y: -30,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          duration: 0.6,
+          ease: "easeOut",
+        }}
+        className="mx-auto hidden max-w-7xl items-center justify-between px-4 py-4 sm:px-6 md:flex lg:px-8"
+      >
+        {/* <a href="#home" className="text-xl font-bold text-white flex justify-center item-center ">
+        <Image
+          src={logo}
+          alt="Logo"
+          width={128}
+          height={128}
+        />
           Shivam<span className="text-blue-400">.</span>
-        </a>
+        </a> */}
+         <Image
+          src={logo}
+          alt="Logo"
+          width={128}
+          height={128}
+        />
+        
 
         <div className="flex items-center gap-8">
           {navLinks.map((link) => (
@@ -103,6 +119,6 @@ export default function Header() {
       </details>
     </header>
   );
-};
+}
 
-export default function Header() 
+export default function Header();
