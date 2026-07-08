@@ -107,5 +107,3 @@ export default function Hero() {
     </section>
   );
 }
-
-export default function Hero();

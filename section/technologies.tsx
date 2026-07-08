@@ -24,7 +24,7 @@ const Technologies = () => {
       id="skills"
       className="flex flex-wrap justify-center gap-3 border-y border-gray-700 bg-gray-900 px-4 py-8 sm:gap-4 sm:px-6 sm:py-10"
     >
-      {languages.map((lang) => (
+      {languages.map((lang, index) => (
         <div>
           <motion.p
           initial={{
@@ -36,7 +36,7 @@ const Technologies = () => {
             y: 0,
           }}
           transition={{
-            delay: 0.8 + lang.value * 0.07,
+            delay: 0.8 + index * 0.07,
           }}
           key={lang.value}
            className="min-w-[96px] rounded-3xl border border-transparent bg-gray-800 px-4 py-3 text-center text-sm text-white transition hover:border-blue-400 sm:min-w-[110px]">
