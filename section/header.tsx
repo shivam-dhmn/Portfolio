@@ -1,7 +1,7 @@
 "use client";
 
 import { Menu, X } from "lucide-react";
-import { motion } from "framer-motion";
+import { AnimatePresence,motion } from "framer-motion";
 import Image from "next/image";
 import logo from "../public/images/fulllogo.png";
 
@@ -31,15 +31,6 @@ export default function Header() {
         }}
         className="mx-auto hidden max-w-7xl items-center justify-between px-4 py-4 sm:px-6 md:flex lg:px-8"
       >
-        {/* <a href="#home" className="text-xl font-bold text-white flex justify-center item-center ">
-        <Image
-          src={logo}
-          alt="Logo"
-          width={128}
-          height={128}
-        />
-          Shivam<span className="text-blue-400">.</span>
-        </a> */}
          <Image
           src={logo}
           alt="Logo"
@@ -92,7 +83,7 @@ export default function Header() {
 
         <div
           id="mobile-navigation"
-          className="premium-mobile-menu border-t border-gray-800 bg-gray-900/95 px-4 pb-5 pt-2 shadow-2xl shadow-black/30 backdrop-blur-xl md:hidden"
+          className="premium-mobile-menu absolute w-full border-t border-gray-800 bg-gray-900/95  px-4 pb-5 pt-2 shadow-2xl shadow-black/30 backdrop-blur-xl md:hidden"
         >
           <div className="mx-auto flex max-w-7xl flex-col gap-1">
             {navLinks.map((link, index) => (
