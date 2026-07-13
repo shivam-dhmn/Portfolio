@@ -228,7 +228,9 @@ function ProjectInfo({ project }: { project: (typeof projects)[number] }) {
         variants={listVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
+        viewport={{ once: true,
+          amount: 0.2
+         }}
         className="mt-3 grid gap-[5px] text-[11px] text-slate-300"
       >
         {project.features.map((feature) => (
